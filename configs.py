@@ -1,16 +1,30 @@
+import os
+class Config:
 
-class ConfigFactory:
-
-    def __init__(self, name='mcnn'):
+    def __init__(self, name='srcnn'):
         self.name = name
         self.batch_size = 64
         self.lr = 1e-6
         self.lr_decay = 0.9
         self.scale_factor = 3
-        self.total_iters = 200000
+        self.total_iters = 400000000
         self.max_ckpt_keep = 2000
-        self.ckpt_router = './ckpts/' + self.name + r'/'
-        self.log_router = './logs/' + self.name + r'/'
+        self.train_print = 5000
+        self.val_print = 50000
+        self.ckpt_dir = os.path.join('./train_log', 'ckpts/')
+        self.log_dir = os.path.join('./train_log', 'logs/')
+        self.events_dir = os.path.join('./train_log', 'events/')
+
+        # training log route
+        if not os.path.exists(self.log_dir):
+            os.makedirs(self.log_dir)
+
+        # model saver route
+        if not os.path.exists(self.ckpt_dir):
+            os.makedirs(self.ckpt_dir)
+
+        if not os.path.exists(self.events_dir):
+            os.makedirs(self.events_dir)
 
     def display_configs(self):
         msg = '''
@@ -30,5 +44,5 @@ class ConfigFactory:
 
 
 if __name__ == '__main__':
-    configs = ConfigFactory()
+    configs = Config()
     configs.display_configs()
