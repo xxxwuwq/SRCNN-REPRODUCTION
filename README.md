@@ -29,3 +29,6 @@ In the papper "Learning a Deep Convolutional Network for Image Super-Resolution,
 the iteration was set 10 1,200,000,000
 
 
+this version exsist some problems which lead to bad psnr \
+to be continue...
+
