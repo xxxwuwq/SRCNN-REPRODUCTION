@@ -27,7 +27,7 @@ def train(cfg, data_loder, test_data):
 
     train_loss = tf.losses.mean_squared_error(TRAIN_LABELS / 255.0, train_inference)
     val_loss = tf.losses.mean_squared_error(VAL_LABELS / 255.0, val_inference)
-    train_op = tf.train.AdamOptimizer(cfg.lr).minimize(train_loss)
+    train_op = tf.train.MomentumOptimizer(cfg.lr, cfg.momentum).minimize(train_loss)
 
     # mse = tf.reduce_mean(tf.square(val_inference - VAL_LABELS))
     # psnr = 20 * log10(255 / tf.sqrt(mse))

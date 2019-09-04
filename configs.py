@@ -3,14 +3,15 @@ class Config:
 
     def __init__(self, name='srcnn'):
         self.name = name
-        self.batch_size = 64
-        self.lr = 1e-6
+        self.batch_size = 128
+        self.lr = 1e-4
+        self.momentum = 0.9
         self.lr_decay = 0.9
         self.scale_factor = 3
         self.total_iters = 400000000
         self.max_ckpt_keep = 2000
-        self.train_print = 5000
-        self.val_print = 50000
+        self.train_print = 500
+        self.val_print = 5000
         self.ckpt_dir = os.path.join('./train_log', 'ckpts/')
         self.log_dir = os.path.join('./train_log', 'logs/')
         self.events_dir = os.path.join('./train_log', 'events/')
