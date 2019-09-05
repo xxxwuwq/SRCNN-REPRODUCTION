@@ -25,7 +25,9 @@ def train(cfg, data_loder, test_data):
     train_inference = model(TRAIN_INPUTS, padding='VALID', name='log')
     val_inference = model(VAL_INPUTS, padding='SAME', name='log')
 
-    train_loss = tf.losses.mean_squared_error(TRAIN_LABELS / 255.0, train_inference)
+    # train_loss = tf.losses.mean_squared_error(TRAIN_LABELS / 255.0, train_inference)
+    train_loss = tf.reduce_mean(tf.reduce_sum(tf.square(TRAIN_LABELS / 255.0 - train_inference), axis=[1, 2, 3]))
+
     val_loss = tf.losses.mean_squared_error(VAL_LABELS / 255.0, val_inference)
     train_op = tf.train.MomentumOptimizer(cfg.lr, cfg.momentum).minimize(train_loss)
 
